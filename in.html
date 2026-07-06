@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        * {
+            transition: all 0.3s ease;
+            text-align: center;
+            font-family: monospace;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #0a0a0a;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        form {
+            border: 3px solid #00ff41;
+            padding: 30px 25px;
+            border-radius: 12px;
+            max-width: 550px;
+            width: 100%;
+            background: #0a0a0a;
+            box-shadow: 0 0 40px rgba(0, 255, 65, 0.1);
+        }
+        
+        .head {
+            font-size: xx-large;
+            color: #00ff41;
+            width: 100%;
+            border: 3px solid #00ff41;
+            padding: 15px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+            animation: blink 2s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+        
+        label {
+            font-size: x-large;
+            color: #00ff41;
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 5px;
+        }
+        
+        input, textarea {
+            background: #0a0a0a;
+            border: 3px solid #00ff41;
+            width: 100%;
+            color: #00ff41;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+            font-family: monospace;
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+            max-height: 300px;
+        }
+        
+        input:focus, textarea:focus {
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.2);
+            border-color: #00ff41;
+        }
+        
+        input::placeholder, textarea::placeholder {
+            color: #00ff41;
+            opacity: 0.6;
+        }
+        
+        .checkbox-group {
+            border: 3px solid #00ff41;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        
+        .checkbox-group .title {
+            font-size: x-large;
+            color: #00ff41;
+            display: block;
+            margin-bottom: 15px;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 15px;
+            margin: 5px 0;
+            border: 1px solid transparent;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+        
+        .checkbox-item:hover {
+            border-color: #00ff41;
+            background: rgba(0, 255, 65, 0.05);
+        }
+        
+        .checkbox-item .lg {
+            font-size: large;
+            color: #00ff41;
+            margin: 0;
+            text-align: left;
+            flex: 1;
+        }
+        
+        input[type="checkbox"] {
+            width: 22px;
+            height: 22px;
+            accent-color: #00ff41;
+            cursor: pointer;
+            flex-shrink: 0;
+            margin-left: 15px;
+        }
+        
+        input[type="checkbox"]:checked {
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+        }
+        
+        .location-group {
+            border: 3px solid #00ff41;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        
+        .location-group .loc {
+            font-size: x-large;
+            color: #00ff41;
+            display: block;
+            margin-bottom: 15px;
+        }
+        
+        .location-group label {
+            font-size: large;
+            color: #00ff41;
+            margin-top: 0;
+            display: block;
+            text-align: left;
+            margin-bottom: 5px;
+        }
+        
+        select {
+            background: #0a0a0a;
+            border: 3px solid #00ff41;
+            color: #00ff41;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-family: monospace;
+            width: 100%;
+            margin-bottom: 15px;
+            outline: none;
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2300ff41' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+        }
+        
+        select:focus {
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.2);
+        }
+        
+        select option {
+            background: #0a0a0a;
+            color: #00ff41;
+        }
+        
+        button {
+            width: 100%;
+            padding: 16px;
+            background: #0a0a0a;
+            color: #00ff41;
+            border: 3px solid #00ff41;
+            border-radius: 8px;
+            font-size: x-large;
+            font-family: monospace;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        
+        button:hover {
+            background: #00ff41;
+            color: #0a0a0a;
+            box-shadow: 0 0 40px rgba(0, 255, 65, 0.3);
+            transform: scale(1.02);
+        }
+        
+        button:active {
+            transform: scale(0.98);
+        }
+        
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #00ff41;
+            border-radius: 4px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+</head>
+<body>
+    <form action="#">
+        <div class="head"><strong>Sign In</strong></div>
+        
+        <label for="name"><strong>Name</strong></label>
+        <input type="text" id="name" name="name" placeholder="Enter your name" required>
+        
+        <label for="email"><strong>Email</strong></label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        
+        <label for="num"><strong>Number</strong></label>
+        <input type="tel" id="num" name="num" placeholder="Enter your number" required>
+        
+        <label for="pass"><strong>Password</strong></label>
+        <input type="password" id="pass" name="pass" placeholder="Enter your password" required>
+        
+        <div class="checkbox-group">
+            <span class="title"><strong>Languages</strong></span>
+            
+            <div class="checkbox-item">
+                <span class="lg">HTML</span>
+                <input type="checkbox" name="langs" value="html">
+            </div>
+            
+            <div class="checkbox-item">
+                <span class="lg">CSS</span>
+                <input type="checkbox" name="langs" value="css">
+            </div>
+            
+            <div class="checkbox-item">
+                <span class="lg">JavaScript</span>
+                <input type="checkbox" name="langs" value="js">
+            </div>
+            
+            <div class="checkbox-item">
+                <span class="lg">Python</span>
+                <input type="checkbox" name="langs" value="py">
+            </div>
+            
+            <div class="checkbox-item">
+                <span class="lg">C++</span>
+                <input type="checkbox" name="langs" value="cpp">
+            </div>
+        </div>
+        
+        <div class="location-group">
+            <span class="loc"><strong>Location</strong></span>
+            
+            <label for="province">Province:</label>
+            <select id="province" name="province" onchange="updateCities()">
+                <option value="">-- Please Select --</option>
+                <option value="East Azerbaijan">East Azerbaijan</option>
+                <option value="West Azerbaijan">West Azerbaijan</option>
+                <option value="Ardabil">Ardabil</option>
+                <option value="Isfahan">Isfahan</option>
+                <option value="Alborz">Alborz</option>
+                <option value="Ilam">Ilam</option>
+                <option value="Bushehr">Bushehr</option>
+                <option value="Tehran">Tehran</option>
+                <option value="Chaharmahal and Bakhtiari">Chaharmahal and Bakhtiari</option>
+                <option value="South Khorasan">South Khorasan</option>
+                <option value="Razavi Khorasan">Razavi Khorasan</option>
+                <option value="North Khorasan">North Khorasan</option>
+                <option value="Khuzestan">Khuzestan</option>
+                <option value="Zanjan">Zanjan</option>
+                <option value="Semnan">Semnan</option>
+                <option value="Sistan and Baluchestan">Sistan and Baluchestan</option>
+                <option value="Fars">Fars</option>
+                <option value="Qazvin">Qazvin</option>
+                <option value="Qom">Qom</option>
+                <option value="Kurdistan">Kurdistan</option>
+                <option value="Kerman">Kerman</option>
+                <option value="Kermanshah">Kermanshah</option>
+                <option value="Kohgiluyeh and Boyer-Ahmad">Kohgiluyeh and Boyer-Ahmad</option>
+                <option value="Golestan">Golestan</option>
+                <option value="Gilan">Gilan</option>
+                <option value="Lorestan">Lorestan</option>
+                <option value="Mazandaran">Mazandaran</option>
+                <option value="Markazi">Markazi</option>
+                <option value="Hormozgan">Hormozgan</option>
+                <option value="Hamadan">Hamadan</option>
+                <option value="Yazd">Yazd</option>
+            </select>
+            
+            <label for="city">City:</label>
+            <select id="city" name="city">
+                <option value="">-- First select a province --</option>
+            </select>
+        </div>
+        
+        <label for="description"><strong>Description</strong></label>
+        <textarea id="description" name="description" placeholder="Enter your description..." rows="4"></textarea>
+        
+        <button type="submit"><strong>Submit</strong></button>
+    </form>
+
+    <script>
+        const cities = {
+            "East Azerbaijan": ["Tabriz", "Maragheh", "Marand", "Mianeh", "Jolfa", "Bonab", "Ajabshir", "Shabestar", "Bostanabad", "Hashtrud", "Kaleybar", "Varzaqan", "Sarab", "Charuymaq"],
+            "West Azerbaijan": ["Urmia", "Khoy", "Bukan", "Mahabad", "Miandoab", "Salmas", "Naqadeh", "Piranshahr", "Takab", "Shahin Dezh", "Oshnavieh", "Sardasht", "Chaldoran", "Showt"],
+            "Ardabil": ["Ardabil", "Parsabad", "Meshgin Shahr", "Khalkhal", "Bileh Savar", "Germi", "Namin", "Nir", "Kowsar", "Sareyn"],
+            "Isfahan": ["Isfahan", "Kashan", "Khomeini Shahr", "Najafabad", "Shahreza", "Falavarjan", "Mobarakeh", "Golpayegan", "Natanz", "Ardestan", "Semirom", "Tiran", "Chadegan", "Dehaqan", "Khansar", "Borkhar", "Buin Miandasht", "Faridan", "Fereydunshahr", "Jarqavieh"],
+            "Alborz": ["Karaj", "Nazarabad", "Savojbolagh", "Taleqan", "Fardis", "Kamal Shahr", "Garmdarreh", "Asara", "Charbagh"],
+            "Ilam": ["Ilam", "Dehloran", "Mehran", "Sarableh", "Eyvan", "Badreh", "Malekshahi", "Chardavol", "Sirvan", "Holeylan"],
+            "Bushehr": ["Bushehr", "Bandar Ganaveh", "Borazjan", "Kangan", "Deylam", "Deyr", "Jam", "Asaluyeh", "Tangestan", "Dashtestan", "Dashti"],
+            "Tehran": ["Tehran", "Shahriar", "Pakdasht", "Varamin", "Damavand", "Firuzkuh", "Rey", "Robat Karim", "Eslamshahr", "Baharestan", "Pishva", "Qods", "Malard", "Parand", "Andisheh", "Nasim Shahr"],
+            "Chaharmahal and Bakhtiari": ["Shahr-e Kord", "Borujen", "Farsan", "Lordegan", "Ardal", "Saman", "Ben", "Kiar", "Gandoman", "Naghan"],
+            "South Khorasan": ["Birjand", "Qaen", "Nehbandan", "Sarbisheh", "Khusf", "Tabas", "Darmian", "Zirkuh", "Sarayan", "Ferdows"],
+            "Razavi Khorasan": ["Mashhad", "Nishapur", "Sabzevar", "Torbat-e Heydarieh", "Gonabad", "Kashmar", "Torbat-e Jam", "Taybad", "Sarakhs", "Chenaran", "Dargaz", "Fariman", "Joghatai", "Kalat", "Khaf", "Mahvelat", "Rashtkhvar", "Bakharz", "Bardaskan", "Davarzan", "Firuzeh", "Khalilabad", "Kuhsorkh", "Roshtkhar", "Sheshtamad", "Takht-e Jolgeh", "Torbat-e Jam", "Zaveh"],
+            "North Khorasan": ["Bojnord", "Esfarayen", "Shirvan", "Jajarm", "Garmeh", "Maneh", "Raz", "Saman", "Faruj", "Safiabad"],
+            "Khuzestan": ["Ahvaz", "Abadan", "Khorramshahr", "Dezful", "Andimeshk", "Behbahan", "Izeh", "Masjed Soleyman", "Shush", "Shushtar", "Mahshahr", "Rambormoz", "Dasht-e Azadegan", "Hendijan", "Lali", "Bagh-e Malek", "Hoveyzeh", "Omidiyeh", "Ramshir", "Gotvand", "Karun", "Bavi", "Hamidiyeh"],
+            "Zanjan": ["Zanjan", "Abhar", "Khodabandeh", "Mahneshan", "Tarom", "Ijrud", "Khorramdarreh", "Soltaniyeh", "Sojas"],
+            "Semnan": ["Semnan", "Damghan", "Shahroud", "Garmsar", "Mehdishahr", "Meyami", "Aradan", "Bastam", "Kalateh", "Sorkheh"],
+            "Sistan and Baluchestan": ["Zahedan", "Zabol", "Iranshahr", "Chabahar", "Khash", "Saravan", "Nikshahr", "Rask", "Sarbaz", "Mehrestan", "Dalgan", "Hirmand", "Hamun", "Bampur", "Fanuj", "Mirjaveh", "Qasr-e Qand", "Konarak", "Golshan", "Nimruz"],
+            "Fars": ["Shiraz", "Marvdasht", "Jahrom", "Fasa", "Kazerun", "Lar", "Neyriz", "Estahban", "Darab", "Sepidan", "Lamerd", "Mamasani", "Rostam", "Kharameh", "Khonj", "Gerash", "Zarrin Dasht", "Bavanat", "Pasargad", "Arsanjan", "Sarvestan", "Kavar", "Sarvistan", "Eqlid", "Abadeh"],
+            "Qazvin": ["Qazvin", "Takestan", "Buin Zahra", "Abyek", "Alvand", "Mohammadiyeh", "Esfarvarin", "Narjeh", "Kuhin"],
+            "Qom": ["Qom", "Jafariyeh", "Dastjerd", "Kahak", "Qahan"],
+            "Kurdistan": ["Sanandaj", "Saqqez", "Baneh", "Marivan", "Qorveh", "Bijar", "Kamyaran", "Divandarreh", "Dehgolan", "Sarvabad", "Ghorveh"],
+            "Kerman": ["Kerman", "Rafsanjan", "Sirjan", "Bam", "Jiroft", "Kahnuj", "Bardsir", "Shahr-e Babak", "Zarand", "Ravar", "Anbarabad", "Faryab", "Manujan", "Rudbar", "Qaleh Ganj", "Rigan", "Narmashir", "Kuhbanan"],
+            "Kermanshah": ["Kermanshah", "Paveh", "Javanrud", "Qasr-e Shirin", "Sarpol-e Zahab", "Sonqor", "Harsin", "Kangavar", "Gilan-e Gharb", "Sahneh", "Ravansar", "Dalahu", "Salas-e Babajani", "Nowsud"],
+            "Kohgiluyeh and Boyer-Ahmad": ["Yasuj", "Gachsaran", "Dehdasht", "Basht", "Charam", "Dana", "Landeh", "Marghun", "Boyer-Ahmad"],
+            "Golestan": ["Gorgan", "Gonbad-e Kavus", "Aliabad Katul", "Kordkuy", "Bandar Torkaman", "Bandar Gaz", "Aq Qala", "Ramian", "Galikash", "Minudasht", "Azadshahr", "Maraveh Tappeh"],
+            "Gilan": ["Rasht", "Bandar Anzali", "Lahijan", "Langarud", "Talesh", "Rudsar", "Sowme'eh Sara", "Fuman", "Astara", "Astaneh-ye Ashrafiyeh", "Roudbar", "Shaft", "Rezvanshahr", "Masal", "Khoshk-e Bijar"],
+            "Lorestan": ["Khorramabad", "Borujerd", "Aligudarz", "Dorud", "Kuhdasht", "Azna", "Nurabad", "Poldokhtar", "Selseleh", "Delfan", "Rumeshkan", "Chegeni", "Khorramabad"],
+            "Mazandaran": ["Sari", "Babol", "Amol", "Qaem Shahr", "Behshahr", "Neka", "Gorgan", "Tonekabon", "Ramsar", "Noshahr", "Chalus", "Mahmudabad", "Fereydunkenar", "Nur", "Savadkuh", "Juybar", "Miandorud", "Simorgh", "Galugah", "Ab Bandan"],
+            "Markazi": ["Arak", "Saveh", "Khomeyn", "Mahallat", "Delijan", "Tafresh", "Ashtian", "Khorheh", "Shazand", "Komijan", "Farahan", "Zarandieh"],
+            "Hormozgan": ["Bandar Abbas", "Minab", "Bandar Lengeh", "Jask", "Rudan", "Hajjiabad", "Bastak", "Parsian", "Khamir", "Sirmand", "Qeshm", "Abu Musa"],
+            "Hamadan": ["Hamadan", "Malayer", "Nahavand", "Tuyserkan", "Kabudarahang", "Razan", "Asadabad", "Bahar", "Famenin", "Dargazin", "Salehabad"],
+            "Yazd": ["Yazd", "Ardakan", "Meybod", "Bafq", "Taft", "Abarkuh", "Khatam", "Ashkezar", "Mehriz", "Behabad", "Naragh"]
+        };
+
+        function updateCities() {
+            const provinceSelect = document.getElementById('province');
+            const citySelect = document.getElementById('city');
+            const selectedProvince = provinceSelect.value;
+            
+            citySelect.innerHTML = '<option value="">-- Please Select --</option>';
+            
+            if (selectedProvince && cities[selectedProvince]) {
+                const cityList = cities[selectedProvince];
+                cityList.forEach(city => {
+                    const option = document.createElement('option');
+                    option.value = city;
+                    option.textContent = city;
+                    citySelect.appendChild(option);
+                });
+            }
+        }
+    </script>
+</body>
+</html>
